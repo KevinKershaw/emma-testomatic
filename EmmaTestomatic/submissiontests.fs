@@ -20,6 +20,7 @@ let all _ =
         "#ctl00_mainContentArea_eventVoluntaryGridView_ctl04_consistingOfTextBox" << "test description"
         click "#ctl00_mainContentArea_nextButton"
         click "#ctl00_mainContentArea_securityTypeSelectControl_nonCUSIP9BasedList_1"
+        sleep 0.01
         click "#ctl00_mainContentArea_nextButton"
         click "#ctl00_mainContentArea_nonCusipStateDropDownList"
         comboSelect "#ctl00_mainContentArea_nonCusipStateDropDownList" "State of Alabama"
@@ -28,6 +29,7 @@ let all _ =
         "#ctl00_mainContentArea_issuerNameTextBox" << "te"
         click "#ctl00_mainContentArea_nextButton"
         displayed "#ctl00_mainContentArea_warningPopupContinueButton"
+        waitFor(fun _ -> ((read "#ctl00_mainContentArea_warningMessageLabel").ToString().Length > 0))
         fieldContains "#ctl00_mainContentArea_warningMessageLabel" "You did not select securities to which the continuing disclosure document relates."
         click "#ctl00_mainContentArea_warningPopupContinueButton"
         "#ctl00_mainContentArea_issuerNameTextBox" << "test"
@@ -35,8 +37,9 @@ let all _ =
         "#ctl00_mainContentArea_datedDateDataTextBox" << "12/12/2014"
         "#ctl00_mainContentArea_expectedClosingDateDataTextBox" << "12/12/2014"
         click "#ctl00_mainContentArea_addNewIssueSubmitImageButton"
+        displayed "#ctl00_mainContentArea_nonCusipResultsGridView_ctl02_issueSelectCheckBox"
         click "#ctl00_mainContentArea_nextButton"
-        displayed "#ctl00_mainContentArea_warningPopupContinueButton"
+        waitFor(fun _ -> ((read "#ctl00_mainContentArea_warningMessageLabel").ToString().Length > 0))
         fieldContains "#ctl00_mainContentArea_warningMessageLabel" "You did not select securities to which the continuing disclosure document relates."
         click "#ctl00_mainContentArea_warningPopupContinueButton"
         check "#ctl00_mainContentArea_nonCusipResultsGridView_ctl02_issueSelectCheckBox"

@@ -12,8 +12,10 @@ let all _ =
         click "Find 529 Plans"
         on (baseEmmaUrl + "Search/Plan529.aspx")
         displayed "#statesMap"
+        if isChrome() then
+            sleep 1
         let trans0 () = 
-            if (browser :? OpenQA.Selenium.IE.InternetExplorerDriver) then
+            if isIE() then
                 js "$('#statesMap area[data-state-code=TX]').click();" |> ignore
             else
                 click (xpath "//map[@id='statesMap']/area[21]")

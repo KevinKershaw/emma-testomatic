@@ -8,7 +8,7 @@ let comboSelect (value1 : string) (value2 : string) =
     press enter
 
 let fileUploadSelectPdf (value1 : string) = 
-    (element value1).SendKeys("C:\EA772654.pdf")
+    (element value1).SendKeys(@"C:\Projects\emma-testomatic\BrowserSupport\sample.pdf")
 
 let fieldContains (value1 : string) (value2 : string) = 
     contains value2 (read value1)
@@ -28,3 +28,9 @@ let dataportLogout () =
     click "#ctl00_Masthead_logOutLinkButton"
     click "#ctl00_Masthead_logOutYesButton"
     on (baseDataportUrl + "AboutDataport.aspx")
+
+let isIE () =
+    (browser :? OpenQA.Selenium.IE.InternetExplorerDriver)
+
+let isChrome () =
+    (browser :? OpenQA.Selenium.Chrome.ChromeDriver)
