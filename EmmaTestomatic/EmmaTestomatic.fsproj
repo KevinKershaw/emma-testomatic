@@ -25,7 +25,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DocumentationFile>bin\Debug\EmmaTestomatic.XML</DocumentationFile>
     <Prefer32Bit>true</Prefer32Bit>
-    <StartArguments>-pressenter  -nowarmup</StartArguments>
+    <StartArguments>-pressenter  -nowarmup -?</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -69,6 +69,7 @@
     <None Include="config.yaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Compile Include="versioninfo.fs" />
     <Compile Include="etconfig.fs" />
     <Compile Include="commandlineargs.fs" />
     <Compile Include="lib.fs" />
@@ -126,4 +127,22 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Target Name="BeforeBuild">
+    <VersionTokenReplace Path="versioninfo.fs" />
+  </Target>
+  <UsingTask TaskName="VersionTokenReplace" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v12.0.dll">
+    <ParameterGroup>
+      <Path ParameterType="System.String" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Code Type="Fragment" Language="cs"><![CDATA[
+string version = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+string content = "module versioninfo" + Environment.NewLine
+                  + Environment.NewLine
+                  + "let versionString = \"" + version + "\"" + Environment.NewLine;
+File.WriteAllText(Path, content);
+
+]]></Code>
+    </Task>
+  </UsingTask>
 </Project>

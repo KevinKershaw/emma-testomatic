@@ -22,6 +22,7 @@ let usage = "usage: EmmaTestomatic args\n" +
 
 [<EntryPoint>]
 let main argv =
+    Console.WriteLine("EmmmaTestomatic version " + versioninfo.versionString)
     chromeDir <- (AppDomain.CurrentDomain.BaseDirectory + @"\BrowserSupport")
     ieDir <- (AppDomain.CurrentDomain.BaseDirectory + @"\BrowserSupport")
     let cla = parseCommandLine argv
