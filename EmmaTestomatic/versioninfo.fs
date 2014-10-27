@@ -1,3 +1,3 @@
 module versioninfo
 
-let versionString = "2014-10-26 21:12"
+let versionString = "2014-10-27-0744"

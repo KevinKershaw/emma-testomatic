@@ -25,7 +25,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DocumentationFile>bin\Debug\EmmaTestomatic.XML</DocumentationFile>
     <Prefer32Bit>true</Prefer32Bit>
-    <StartArguments>-pressenter  -nowarmup -?</StartArguments>
+    <StartArguments>-pressenter  -chrome</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -136,7 +136,7 @@
     </ParameterGroup>
     <Task>
       <Code Type="Fragment" Language="cs"><![CDATA[
-string version = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+string version = DateTime.Now.ToString("yyyy-MM-dd-HHmm");
 string content = "module versioninfo" + Environment.NewLine
                   + Environment.NewLine
                   + "let versionString = \"" + version + "\"" + Environment.NewLine;
