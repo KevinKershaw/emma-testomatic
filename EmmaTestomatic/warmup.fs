@@ -8,8 +8,13 @@ let warmupEmma () =
     let origCompareTimeout = configuration.compareTimeout
     configuration.compareTimeout <- 120.0 
     url (baseEmmaUrl + "Search/Search.aspx")
-    if (elements "#ctl00_mainContentArea_disclaimerContent_yesButton").Length > 0 then
-        click "#ctl00_mainContentArea_disclaimerContent_yesButton"
+    if isIE() then
+        let jsResult = (js "return $('#ctl00_mainContentArea_disclaimerContent_yesButton').length;")
+        if jsResult.ToString() <> "0" then
+            click "#ctl00_mainContentArea_disclaimerContent_yesButton"
+    else
+        if (elements "#ctl00_mainContentArea_disclaimerContent_yesButton").Length > 0 then
+            click "#ctl00_mainContentArea_disclaimerContent_yesButton"
     waitFor (fun _ -> (elements "#runSearchButton").Length > 0)
     js """$("#stateDropdownList").val("VA"); $("#stateDropdownList").multiselect("refresh");""" |> ignore
     "#issuerName" << "Richmond Virginia"
