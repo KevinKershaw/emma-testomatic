@@ -8,7 +8,8 @@ let comboSelect (value1 : string) (value2 : string) =
     press enter
 
 let fileUploadSelectPdf (value1 : string) = 
-    (element value1).SendKeys(@"C:\Projects\emma-testomatic\BrowserSupport\sample.pdf")
+    let fileName = (AppDomain.CurrentDomain.BaseDirectory  + @"sample.pdf")
+    (element value1).SendKeys(fileName)
 
 let fieldContains (value1 : string) (value2 : string) = 
     contains value2 (read value1)

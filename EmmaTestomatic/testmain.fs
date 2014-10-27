@@ -22,8 +22,8 @@ let usage = "usage: EmmaTestomatic args\n" +
 
 [<EntryPoint>]
 let main argv =
-    chromeDir <- @"C:\Projects\emma-testomatic\BrowserSupport"
-    ieDir <- @"C:\Projects\emma-testomatic\BrowserSupport"
+    chromeDir <- (AppDomain.CurrentDomain.BaseDirectory + @"\BrowserSupport")
+    ieDir <- (AppDomain.CurrentDomain.BaseDirectory + @"\BrowserSupport")
     let cla = parseCommandLine argv
     if cla.showUsage || not cla.isValid then
         System.Console.WriteLine(usage)
