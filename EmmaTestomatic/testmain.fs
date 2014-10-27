@@ -13,6 +13,7 @@ let usage = "usage: EmmaTestomatic [args]\n" +
             "    -Chrome (use chrome browser)\n" +
             "    -IE (use internet explorer browser)\n" +
             "    -WarmUp (run prepare both emma and dataport for testing*)\n" +
+            "    -NoWarmUp (do NOT run prepare both emma and dataport for testing)\n" +
             "    -Dev (run only the dev test suite)\n" +
             "    -PressEnter (require entering return key at end of tests)\n" +
             "    -Help or -? (display this usage text and run no tests)\n" +
