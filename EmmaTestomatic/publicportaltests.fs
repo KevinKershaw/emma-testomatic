@@ -12,7 +12,7 @@ let all _ =
         click "Find 529 Plans"
         on (baseEmmaUrl + "Search/Plan529.aspx")
         displayed "#statesMap"
-        if isChrome() then
+        if isChrome() || isFirefox() then
             sleep 1
         let trans0 () = 
             if isIE() then

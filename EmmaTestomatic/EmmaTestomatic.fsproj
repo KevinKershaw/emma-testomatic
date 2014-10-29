@@ -25,7 +25,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DocumentationFile>bin\Debug\EmmaTestomatic.XML</DocumentationFile>
     <Prefer32Bit>true</Prefer32Bit>
-    <StartArguments>-chrome</StartArguments>
+    <StartArguments>-nowarmup -pressenter -dev</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -76,6 +76,7 @@
     <Compile Include="warmup.fs" />
     <Compile Include="devtests.fs" />
     <Compile Include="publicportaltests.fs" />
+    <Compile Include="myemmatests.fs" />
     <Compile Include="submissiontests.fs" />
     <Compile Include="testmain.fs" />
     <None Include="sample.pdf">

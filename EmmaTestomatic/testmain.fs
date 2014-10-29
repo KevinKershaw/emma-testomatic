@@ -40,8 +40,9 @@ let main argv =
             if cla.devMode then
                 devtests.all ()
             else
-                publicportaltests.all ()
-                submissiontests.all ()
+                //publicportaltests.all ()
+                myemmatests.all ()
+                //submissiontests.all ()
             match cla.browser with
                 | Firefox -> start firefox
                 | Chrome -> start chrome

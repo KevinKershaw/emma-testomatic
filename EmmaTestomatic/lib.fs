@@ -35,3 +35,6 @@ let isIE () =
 
 let isChrome () =
     (browser :? OpenQA.Selenium.Chrome.ChromeDriver)
+
+let isFirefox () =
+    (browser :? OpenQA.Selenium.Firefox.FirefoxDriver)
