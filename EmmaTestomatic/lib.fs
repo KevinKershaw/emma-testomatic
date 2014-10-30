@@ -38,3 +38,9 @@ let isChrome () =
 
 let isFirefox () =
     (browser :? OpenQA.Selenium.Firefox.FirefoxDriver)
+
+let getSubmissionId (value1 : string) =
+    let s = (read value1)
+    let b = s.IndexOf("(")
+    let e = s.IndexOf(")")
+    s.Substring((b+1), (e-b-1))

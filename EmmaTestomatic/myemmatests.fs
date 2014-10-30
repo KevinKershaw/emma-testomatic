@@ -12,6 +12,7 @@ let meLogin () =
     click "#myEmma"
     displayed "#signInPanel"
     click "#Email"
+    sleep 0.01
     "#Email" << config.myEmma.userId
     "#Pin" << config.myEmma.password
     click "#signInButton"

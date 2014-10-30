@@ -5,6 +5,8 @@ open runner
 open etconfig
 open lib
 
+let mutable lastSubmissionId = ""
+
 let all _ =
     context "submission tests"
     once (fun _ -> dataportLogin())
@@ -53,6 +55,9 @@ let all _ =
         click "#ctl00_mainContentArea_publishButton"
         click "#ctl00_mainContentArea_publishYesButton"
         fieldContains "#ctl00_mainContentArea_submissionConfirmationUserControl_confirmationInfoLabel" "PUBLISHED SUCCESSFULLY"
+        lastSubmissionId <- getSubmissionId("#ctl00_mainContentArea_submissionConfirmationUserControl_confirmationInfoLabel")
+        Console.WriteLine ("Submission Id = " + lastSubmissionId)
+        
 
     "SHORT-ARS" &&& fun _ ->
         url (baseDataportUrl + "Submission/SubmissionPortal.aspx")
@@ -71,4 +76,5 @@ let all _ =
         click "#ctl00_mainContentArea_publishButton"
         click "#ctl00_mainContentArea_publishYesButton"
         fieldContains "#ctl00_mainContentArea_submissionConfirmationUserControl_confirmationInfoLabel" "PUBLISHED SUCCESSFULLY"
+        lastSubmissionId <- getSubmissionId("#ctl00_mainContentArea_submissionConfirmationUserControl_confirmationInfoLabel")
 
