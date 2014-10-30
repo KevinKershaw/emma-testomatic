@@ -37,7 +37,7 @@ let all _ =
     "myemma logout" &&& fun _ ->
         meLogout ()
 
-    
+(*    
     context "myemma tests extended"
     once(fun _ ->
         url (baseEmmaUrl + "Home/Index")
@@ -49,3 +49,4 @@ let all _ =
         url (baseEmmaUrl + "Home/Index")
         click "#ctl00_Masthead_search"
         js """$("#stateDropdownList").val("VA"); $("#stateDropdownList").multiselect("refresh");""" |> ignore
+*)

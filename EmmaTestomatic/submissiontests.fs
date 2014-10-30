@@ -25,6 +25,7 @@ let all _ =
         click "#ctl00_mainContentArea_nonCusipStateDropDownList"
         comboSelect "#ctl00_mainContentArea_nonCusipStateDropDownList" "State of Alabama"
         click "#ctl00_mainContentArea_nonCusipSearchImageButton"
+        sleep 0.01
         click "#ctl00_mainContentArea_addNewIssueButton"
         "#ctl00_mainContentArea_issuerNameTextBox" << "te"
         click "#ctl00_mainContentArea_nextButton"
