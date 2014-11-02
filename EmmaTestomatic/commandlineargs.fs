@@ -9,6 +9,7 @@ type CommandLineArgs () = class
     member val isValid : bool = true with get, set
     member val browser : Browser = Firefox with get, set
     member val warmUp : bool = true with get, set
+    member val log : bool = false with get, set
     member val devMode : bool = false with get, set
     member val pressEnter : bool = false with get, set
     member val versionOnly : bool = false with get, set
@@ -24,6 +25,7 @@ let parseCommandLine (args: string[]) =
             | "-ie" -> cla.browser <- IE
             | "-warmup" -> cla.warmUp <- true
             | "-nowarmup" -> cla.warmUp <- false
+            | "-log" -> cla.log <- true
             | "-dev" -> cla.devMode <- true
             | "-pressenter" -> cla.pressEnter <- true
             | "-version" -> cla.versionOnly <- true

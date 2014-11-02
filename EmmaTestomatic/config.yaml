@@ -6,3 +6,4 @@ email: abyss@msrb.org
 myEmma:
     userId: sjones@msrb.org
     password: Courtney1
+logFileTemplate: logs\test-run-{dt}.log

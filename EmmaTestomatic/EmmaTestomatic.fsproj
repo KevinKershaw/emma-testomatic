@@ -25,7 +25,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DocumentationFile>bin\Debug\EmmaTestomatic.XML</DocumentationFile>
     <Prefer32Bit>true</Prefer32Bit>
-    <StartArguments>-pressenter</StartArguments>
+    <StartArguments>-pressenter -log</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -72,6 +72,7 @@
     <Compile Include="versioninfo.fs" />
     <Compile Include="etconfig.fs" />
     <Compile Include="commandlineargs.fs" />
+    <Compile Include="etreporter.fs" />
     <Compile Include="lib.fs" />
     <Compile Include="warmup.fs" />
     <Compile Include="devtests.fs" />

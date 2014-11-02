@@ -1,6 +1,7 @@
 ﻿module submissiontests
 open System
 open canopy
+open canopy.configuration
 open runner
 open etconfig
 open lib
@@ -56,7 +57,7 @@ let all _ =
         click "#ctl00_mainContentArea_publishYesButton"
         fieldContains "#ctl00_mainContentArea_submissionConfirmationUserControl_confirmationInfoLabel" "PUBLISHED SUCCESSFULLY"
         lastSubmissionId <- getSubmissionId("#ctl00_mainContentArea_submissionConfirmationUserControl_confirmationInfoLabel")
-        Console.WriteLine ("Submission Id = " + lastSubmissionId)
+        reporter.write ("Submission Id = " + lastSubmissionId)
         
 
     "SHORT-ARS" &&& fun _ ->

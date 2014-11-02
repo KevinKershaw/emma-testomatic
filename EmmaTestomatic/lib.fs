@@ -1,6 +1,7 @@
 ﻿module lib
 open System
 open canopy
+open canopy.configuration
 open etconfig
 
 let comboSelect (value1 : string) (value2 : string) = 
@@ -15,20 +16,26 @@ let fieldContains (value1 : string) (value2 : string) =
     contains value2 (read value1)
 
 let dataportLogin () =
-    //Console.WriteLine "dataportLogin"
-    url (baseDataportUrl + "AboutDataport.aspx")
-    click "#loginButton"
-    "#UserName" << config.userId
-    "#UPass" << config.password
-    click "#LoginButton"
-    on (baseDataportUrl + "Submission/SubmissionPortal.aspx")
+    try
+        url (baseDataportUrl + "AboutDataport.aspx")
+        click "#loginButton"
+        "#UserName" << config.userId
+        "#UPass" << config.password
+        click "#LoginButton"
+        on (baseDataportUrl + "Submission/SubmissionPortal.aspx")
+    with
+    | _ ->
+         reporter.write "dataportLogin failed"
 
 let dataportLogout () =
-    //Console.WriteLine "dataportLogout"
-    url (baseDataportUrl + "Submission/SubmissionPortal.aspx")
-    click "#ctl00_Masthead_logOutLinkButton"
-    click "#ctl00_Masthead_logOutYesButton"
-    on (baseDataportUrl + "AboutDataport.aspx")
+    try
+        url (baseDataportUrl + "Submission/SubmissionPortal.aspx")
+        click "#ctl00_Masthead_logOutLinkButton"
+        click "#ctl00_Masthead_logOutYesButton"
+        on (baseDataportUrl + "AboutDataport.aspx")
+    with
+    | _ ->
+        reporter.write "dataportLogout failed"
 
 let isIE () =
     (browser :? OpenQA.Selenium.IE.InternetExplorerDriver)
@@ -40,7 +47,10 @@ let isFirefox () =
     (browser :? OpenQA.Selenium.Firefox.FirefoxDriver)
 
 let getSubmissionId (value1 : string) =
-    let s = (read value1)
-    let b = s.IndexOf("(")
-    let e = s.IndexOf(")")
-    s.Substring((b+1), (e-b-1))
+    try
+        let s = (read value1)
+        let b = s.IndexOf("(")
+        let e = s.IndexOf(")")
+        s.Substring((b+1), (e-b-1))
+    with
+    | _ -> ""
