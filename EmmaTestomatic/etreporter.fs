@@ -9,7 +9,7 @@ type LogFileReporter (logFileTemplate : string) =
         let dtString = DateTime.Now.ToString "yyyy-MM-dd-HHmm"
         let outputFileName = logFileTemplate.Replace("{dt}", dtString)
         let outputFileInfo = new IO.FileInfo (outputFileName)
-        if System.IO.Directory.Exists (outputFileInfo.Directory.FullName) = false then
+        if not (System.IO.Directory.Exists (outputFileInfo.Directory.FullName)) then
             System.IO.Directory.CreateDirectory (outputFileInfo.Directory.FullName) |> ignore
         new System.IO.StreamWriter (outputFileInfo.FullName)
 
