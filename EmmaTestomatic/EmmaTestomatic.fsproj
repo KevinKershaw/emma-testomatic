@@ -74,6 +74,7 @@
     <Compile Include="commandlineargs.fs" />
     <Compile Include="etreporter.fs" />
     <Compile Include="lib.fs" />
+    <Compile Include="etlib.fs" />
     <Compile Include="warmup.fs" />
     <Compile Include="devtests.fs" />
     <Compile Include="Tests\publicportaltests.fs" />

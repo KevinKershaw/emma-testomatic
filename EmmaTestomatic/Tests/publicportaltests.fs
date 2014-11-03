@@ -3,6 +3,7 @@ open canopy
 open runner
 open etconfig
 open lib
+open etlib
 
 let all _ = 
     context "public portal tests"

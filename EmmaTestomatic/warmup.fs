@@ -3,6 +3,7 @@ open canopy
 open configuration
 open etconfig
 open lib
+open etlib
 open System
 
 let warmupEmma () =

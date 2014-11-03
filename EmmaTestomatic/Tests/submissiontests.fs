@@ -5,6 +5,7 @@ open canopy.configuration
 open runner
 open etconfig
 open lib
+open etlib
 
 let mutable lastSubmissionId = ""
 
@@ -34,7 +35,7 @@ let all _ =
         click "#ctl00_mainContentArea_nextButton"
         displayed "#ctl00_mainContentArea_warningPopupContinueButton"
         waitFor(fun _ -> ((read "#ctl00_mainContentArea_warningMessageLabel").ToString().Length > 0))
-        fieldContains "#ctl00_mainContentArea_warningMessageLabel" "You did not select securities to which the continuing disclosure document relates."
+        assertFieldContains "#ctl00_mainContentArea_warningMessageLabel" "You did not select securities to which the continuing disclosure document relates."
         click "#ctl00_mainContentArea_warningPopupContinueButton"
         "#ctl00_mainContentArea_issuerNameTextBox" << "test"
         "#ctl00_mainContentArea_issueNameTextBox" << "test"
@@ -44,7 +45,7 @@ let all _ =
         displayed "#ctl00_mainContentArea_nonCusipResultsGridView_ctl02_issueSelectCheckBox"
         click "#ctl00_mainContentArea_nextButton"
         waitFor(fun _ -> ((read "#ctl00_mainContentArea_warningMessageLabel").ToString().Length > 0))
-        fieldContains "#ctl00_mainContentArea_warningMessageLabel" "You did not select securities to which the continuing disclosure document relates."
+        assertFieldContains "#ctl00_mainContentArea_warningMessageLabel" "You did not select securities to which the continuing disclosure document relates."
         click "#ctl00_mainContentArea_warningPopupContinueButton"
         check "#ctl00_mainContentArea_nonCusipResultsGridView_ctl02_issueSelectCheckBox"
         click "#ctl00_mainContentArea_nextButton"
@@ -55,10 +56,9 @@ let all _ =
         click "#ctl00_mainContentArea_savePublishExitControl_publishButton"
         click "#ctl00_mainContentArea_publishButton"
         click "#ctl00_mainContentArea_publishYesButton"
-        fieldContains "#ctl00_mainContentArea_submissionConfirmationUserControl_confirmationInfoLabel" "PUBLISHED SUCCESSFULLY"
+        assertFieldContains "#ctl00_mainContentArea_submissionConfirmationUserControl_confirmationInfoLabel" "PUBLISHED SUCCESSFULLY"
         lastSubmissionId <- getSubmissionId("#ctl00_mainContentArea_submissionConfirmationUserControl_confirmationInfoLabel")
         reporter.write ("Submission Id = " + lastSubmissionId)
-        
 
     "SHORT-ARS" &&& fun _ ->
         url (baseDataportUrl + "Submission/SubmissionPortal.aspx")
@@ -76,6 +76,6 @@ let all _ =
         click "#ctl00_mainContentArea_savePublishExitControl_publishButton"
         click "#ctl00_mainContentArea_publishButton"
         click "#ctl00_mainContentArea_publishYesButton"
-        fieldContains "#ctl00_mainContentArea_submissionConfirmationUserControl_confirmationInfoLabel" "PUBLISHED SUCCESSFULLY"
+        assertFieldContains "#ctl00_mainContentArea_submissionConfirmationUserControl_confirmationInfoLabel" "PUBLISHED SUCCESSFULLY"
         lastSubmissionId <- getSubmissionId("#ctl00_mainContentArea_submissionConfirmationUserControl_confirmationInfoLabel")
 
