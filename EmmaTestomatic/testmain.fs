@@ -33,6 +33,11 @@ let configReporters (cla : CommandLineArgs) =
         canopy.configuration.reporter <- t
         logReporter.describe (sprintf "EmmmaTestomatic version %s" versioninfo.versionString)
         logReporter.describe (sprintf "tests executed on %s %s" (DateTime.Now.ToShortDateString()) (DateTime.Now.ToShortTimeString()))
+        let bstr = match cla.browser with
+                   | Firefox -> "firefox"
+                   | Chrome -> "chrome"
+                   | IE -> "ie"
+        logReporter.describe (sprintf "browser: %s" bstr)
         logReporter.describe "parameters:"
         logReporter.write ("baseEmmaUrl: " + baseEmmaUrl)
         logReporter.write ("baseDataportUrl: " + baseDataportUrl)
