@@ -4,10 +4,6 @@ open canopy
 open canopy.configuration
 open etconfig
 
-let fileUploadSelectPdf (value1 : string) = 
-    let fileName = (AppDomain.CurrentDomain.BaseDirectory  + @"sample.pdf")
-    (element value1).SendKeys(fileName)
-
 let dataportLogin () =
     try
         url (baseDataportUrl + "AboutDataport.aspx")
@@ -33,4 +29,13 @@ let dataportLogout () =
 let comboSelect (value1 : string) (value2 : string) = 
     value1 << value2
     press enter
+
+let getSubmissionId (value1 : string) =
+    try
+        let s = (read value1)
+        let b = s.IndexOf("(")
+        let e = s.IndexOf(")")
+        s.Substring((b+1), (e-b-1))
+    with
+    | _ -> ""
 
