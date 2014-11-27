@@ -76,8 +76,15 @@ let extendTimeout (fn : unit -> unit) =
         configuration.compareTimeout <- origCompareTimeout
 
 let waitForAjax () =
-    let t0 () =
+    let fn () =
         sleep 0.01
-        let result = js "return $.active;" |> Convert.ToInt32
-        result = 0
-    waitFor t0
+        let ret = js "return $.active;" |> Convert.ToInt32
+        ret = 0
+    waitFor fn
+
+let waitForPostback () =
+    let fn () = 
+        sleep 0.01
+        let ret = js "return Sys.WebForms.PageRequestManager.getInstance().get_isInAsyncPostBack();" |> Convert.ToBoolean
+        ret = false
+    waitFor fn
